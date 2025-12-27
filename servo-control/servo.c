@@ -4,6 +4,10 @@
 int main(){
     // Define constants
     const uint SERVO_PIN = 15;
+    const uint LED_PIN = 16;
+    stdio_init_all();
+    gpio_init(LED_PIN);
+    gpio_set_dir(LED_PIN, GPIO_OUT);
 
     // setup section
     // set pwm frequency to 50hz  
@@ -25,23 +29,33 @@ int main(){
     
     int channel = pwm_gpio_to_channel(SERVO_PIN);
     int pulse_0 = 1953;
-    int pulse_90 = 2929;
-    int pulse_180 = 3906;
+    int pulse_45 = 2929;
+    int pulse_90 = 3906;
+    int pulse_4500 = 4500;
+    int pulse_5000 = 5000;
 
     while (true){
+
+        // flash led at start of loop
+        gpio_put(LED_PIN, 1);
+        sleep_ms(500);
+        gpio_put(LED_PIN, 0);
+        sleep_ms(500);
+
         // move servo to 0* 1000us pulse
         pwm_set_chan_level(slice_num, channel, pulse_0);
-        // wait 1 second
+        sleep_ms(1000);
+        // move servo to 45*
+        pwm_set_chan_level(slice_num, channel, pulse_45);
         sleep_ms(1000);
         // move servo to 90* 1500us pulse
         pwm_set_chan_level(slice_num, channel, pulse_90);
-
-        // wait 1 second
         sleep_ms(1000);
         // move to 180* 2000us pulse
-        pwm_set_chan_level(slice_num, channel, pulse_180);
+        pwm_set_chan_level(slice_num, channel, pulse_4500);
+        sleep_ms(1000);
 
-        // wait 1 second
+        pwm_set_chan_level(slice_num, channel, pulse_5000);
         sleep_ms(1000);
     }
     return 0;
