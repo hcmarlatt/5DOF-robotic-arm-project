@@ -10,6 +10,8 @@ int main(){
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
     // **SERVO CALIBRATION VALUES** 
+
+    // SG90:
         // SERVO 1+2:
         // MIN - 0*: 700
         // MAX - 180*: 4550
@@ -19,6 +21,16 @@ int main(){
         // MIN 0*: 850
         // MAX 180*: 4650
         // TRUE MAX: 5025
+    
+    // MG995
+        // SERVO 1+2+3
+        // TRUE MIN: 685
+        // 0*: 750
+        // 180*: 4600
+        // TRUE MAX: 5160 (#3 has MAX: ~5280)
+
+
+
 
     // setup section
     // set pwm frequency to 50hz  
@@ -35,11 +47,6 @@ int main(){
     pwm_set_enabled(slice_num, true);
     
     int channel = pwm_gpio_to_channel(SERVO_PIN);
-    int pulse_0 = 1953;
-    int pulse_45 = 2929;
-    int pulse_90 = 3906;
-    int pulse_4500 = 4500;
-    int pulse_5000 = 5000;
 
     while (true){
 
@@ -50,7 +57,7 @@ int main(){
         pwm_set_chan_level(slice_num, channel, pulse);
         gpio_put(LED_PIN, 1);
         sleep_ms(2000);
-        printf("Pulse: %d sent\n", pulse);
+        printf("%d sent\n", pulse);
         sleep_ms(1000);
         gpio_put(LED_PIN, 0);
         sleep_ms(100);
