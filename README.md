@@ -1,6 +1,6 @@
 # 5DOF-robotic-arm-project
 Learning embedded systems through robotic arm
-
+## Part 1: 
 # LED Brightness Control via Joystick
 
 Learning project following guided tutorial. Code written with AI assistance to understand PWM and ADC concepts.
@@ -17,4 +17,14 @@ Key takeaways:
 * LED brightness is controlled by rapidly turning LED on/off and modulating the delay between cycles. 
 * Breadboards can have breaks in the middle of the power rail. 
 
-Next: use joystick to control single servo motor before starting arm assembly. 
+## Part 2: Servo motor calibration
+
+- Tested SG90 servos
+- Found min/max pulse values and 0*/180* values
+- Used serial input to manually find values
+
+Learned: 
+- One servo's value range was shifted up by 150-300
+- Mechanical servo limits are different from true 0*/180* limits
+- Will need external power to run all 6 servos for this projects due to pico power limits
+
