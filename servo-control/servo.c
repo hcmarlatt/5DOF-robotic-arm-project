@@ -9,22 +9,29 @@ int main(){
     gpio_init(LED_PIN);
     gpio_set_dir(LED_PIN, GPIO_OUT);
 
+    // **SERVO CALIBRATION VALUES** 
+        // SERVO 1+2:
+        // MIN - 0*: 700
+        // MAX - 180*: 4550
+        // TRUE MAX~190*: 4750
+
+        // SERVO 3:
+        // MIN 0*: 850
+        // MAX 180*: 4650
+        // TRUE MAX: 5025
+
     // setup section
     // set pwm frequency to 50hz  
     uint slice_num = pwm_gpio_to_slice_num(SERVO_PIN);
-
-    // Now we need to configure this slice for 50Hz
-    // I'll give you the numbers, but let's understand them:
     float divisor = 64.0; 
     int wrap_value = 39062;
-    // YOUR TASK: Add these lines in the right order
-    // 1. Make pin 15 output PWM
+    // Make pin 15 output PWM
     gpio_set_function(SERVO_PIN, GPIO_FUNC_PWM);
-    // 2. Set clock divider to 64
+    // Set clock divider to 64
     pwm_set_clkdiv(slice_num, divisor);
-    // 3. Set wrap to 39062 (this makes 20ms cycles)
+    // Set wrap to 39062 (this makes 20ms cycles)
     pwm_set_wrap(slice_num, wrap_value);
-    // 4. Enable the PWM
+    // Enable the PWM
     pwm_set_enabled(slice_num, true);
     
     int channel = pwm_gpio_to_channel(SERVO_PIN);
@@ -36,27 +43,17 @@ int main(){
 
     while (true){
 
-        // flash led at start of loop
+        // get pulse from user
+        int pulse;
+        printf("Pulse: ");
+        scanf("%d", &pulse);
+        pwm_set_chan_level(slice_num, channel, pulse);
         gpio_put(LED_PIN, 1);
-        sleep_ms(500);
+        sleep_ms(2000);
+        printf("Pulse: %d sent\n", pulse);
+        sleep_ms(1000);
         gpio_put(LED_PIN, 0);
-        sleep_ms(500);
-
-        // move servo to 0* 1000us pulse
-        pwm_set_chan_level(slice_num, channel, pulse_0);
-        sleep_ms(1000);
-        // move servo to 45*
-        pwm_set_chan_level(slice_num, channel, pulse_45);
-        sleep_ms(1000);
-        // move servo to 90* 1500us pulse
-        pwm_set_chan_level(slice_num, channel, pulse_90);
-        sleep_ms(1000);
-        // move to 180* 2000us pulse
-        pwm_set_chan_level(slice_num, channel, pulse_4500);
-        sleep_ms(1000);
-
-        pwm_set_chan_level(slice_num, channel, pulse_5000);
-        sleep_ms(1000);
+        sleep_ms(100);
     }
     return 0;
 }
