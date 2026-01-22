@@ -28,3 +28,17 @@ Learned:
 - Mechanical servo limits are different from true 0*/180* limits
 - Will need external power to run all 6 servos for this projects due to pico power limits
 
+
+## Part 3 Add control for all servos 
+
+- Completed assembly of 5DOF arm 
+- Manual control for all motors via serial input
+- Slow movement function to control momentum of the arm
+- Upgraded power to 6V external power (4x AA batteries)
+- Removed gripper due to to torque limitations of SG90 servos
+
+Learned: 
+
+- SG90 servos have insufficient torque to be useful in this application. I'll need to design my own version of this arm for practical usage. 
+- 3.7V power was insufficent to run all 6 servos. Had brown out the first time I ran it, but no problems after switching to 6V power. 
+
