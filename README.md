@@ -42,3 +42,15 @@ Learned:
 - SG90 servos have insufficient torque to be useful in this application. I'll need to design my own version of this arm for practical usage. 
 - 3.7V power was insufficent to run all 6 servos. Had brown out the first time I ran it, but no problems after switching to 6V power. 
 
+## Part 4 Implimenet 2D inverse kinematics
+
+- Short script to test motors working simultaneously
+- Inverse kinematics script to move actuator tip to a point in 2D space
+- Used previous serial input control script to account for servo motor mounting angles
+- Simplified arms into two links to make inital programming easier
+
+Learned: 
+
+- Running multiple servos simultaneously causes power brownout (will add a second battery holder)
+- Script in current state calculates negative motor angles, causing failure to get to some points in the positive X axis
+
