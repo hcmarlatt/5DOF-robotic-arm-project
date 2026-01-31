@@ -54,3 +54,36 @@ Learned:
 - Running multiple servos simultaneously causes power brownout (will add a second battery holder)
 - Script in current state calculates negative motor angles, causing failure to get to some points in the positive X axis
 
+## Part 4 continued, Debug 2D inverse kinematics
+
+- Full 2D IK working
+- Cleaned up code
+- Implimented dual configuration solver to solve negative motor angle problem
+- Coordinated mulit servo movements 
+- Workspace limit validation
+- Added second battery pack in parallel to solve power brownout
+
+Learned: 
+
+- Need workspace limits for servo and link length constraints
+- Need to calculate multiple IK solutions for elbow up/down configurations
+- Accounting for my specific servo mounting angles (each arm requires custom remapping)
+- Need a conversion layer between IK output and physical servo input
+- Diagnosing correct vs incorrect rejections (workspace limits vs bugs)
+
+## Part 5 Add joystick control for 2D positions
+
+- Wired analog joystick for real time position control
+- Implemented relative/incremental joystick control by adding delta to current 2D IK position
+- Added boundary sliding for a smoother user experience
+- Used real time position serial output to assist with debugging
+- Full 2D workspace now accessible through joystick control
+- Still have erratic movements when elbow needs to change orientation to reach new position
+
+Learned: 
+
+- ADC init and reading, same as part 1 joystick brightness control
+- Tested absolute vs relative control (joystick is not precise enough and control is difficult with aboslute control)
+- Workspace geometry and hardware constraints when navigating 2D space (servo angles and link lengths make many positons unreachable)
+
+
