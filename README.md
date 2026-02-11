@@ -86,4 +86,19 @@ Learned:
 - Tested absolute vs relative control (joystick is not precise enough and control is difficult with aboslute control)
 - Workspace geometry and hardware constraints when navigating 2D space (servo angles and link lengths make many positons unreachable)
 
+## Part 6 Add second joystick for 3D control
+
+- Wired second joystick for 3 axis control, x/z on 'side' joystick, Y axis on 'top' joystick
+(as if joysticks were mounted on a cube)
+- Remapped ADC inputs
+- Fixed Y axis to use base rotation angular movement instead of Cartesian translation, preventing arm dip/rise when rotating
+- simplified boundary sliding logic, although still seems buggy. 
+
+Remaining issues:
+- Jerky control partly due to hardware limits.
+- Coordinates mapped incorrectly
+
+Learned: 
+- Pico only has 3 ADC inputs
+- Changing Y in Cartesian space changes radial distance. Y needs to be applied as rotation.
 
