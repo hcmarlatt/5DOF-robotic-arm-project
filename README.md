@@ -102,3 +102,12 @@ Learned:
 - Pico only has 3 ADC inputs
 - Changing Y in Cartesian space changes radial distance. Y needs to be applied as rotation.
 
+## Part 7 Move to arduino in 2d. First alpha testing
+
+- Pico wouldn't run, continually restarted
+- Converted code to C++ with arduino libraries/formatting
+- Added 2nd joystick for wrist pitch control
+- First successful alpha phase tests using the robot to feed myself fries
+- Wrist rotation interfered with torque/stabbing fries, wrapped in place with electrical tape.
+
+
